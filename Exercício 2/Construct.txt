@@ -1,0 +1,38 @@
+a) 
+    CONSTRUCT {
+        ?ind1 :temIrmão ?ind2 .
+    }   
+    WHERE {
+        ?ind1 :temProgenitor ?prog.
+        ?ind2 :temProgenitor ?prog.
+    }
+
+b)
+CONSTRUCT {
+            ?bisNeto :temBisAvo ?bisAvo .
+        } WHERE {
+            ?bisNeto :temProgenitor ?progenitorBisNeto .
+            ?progenitorBisNeto :temProgenitor ?prog_progenitorBisNeto.
+            ?bisAvo :eProgenitorDe ?prog_progenitorBisNeto.
+        }
+
+d)
+CONSTRUCT {
+            ?prim1 :temPrimo ?prim2 .
+        } WHERE {
+            ?prim1 :temProgenitor ?progPrim1 . 
+            ?progPrim1 :temProgenitor ?ProgProgPrim1 .
+            ?ProgProgPrim1 :eProgenitorDe ?ProgPrim2 .
+            ?ProgPrim2 :eProgenitorDe ?prim2 .
+        }
+
+e)
+CONSTRUCT {
+    ?m :sexo "F" . 
+    ?p :sexo "M" .
+} WHERE {
+    ?ind1 :temMae ?m .
+    ?ind2 :temPai ?p .
+}
+
+

@@ -1,0 +1,38 @@
+PREFIX : <http://www.di.uminho.pt/prc2020/EMD#>
+a) 
+SELECT (COUNT(?emd) AS ?total) WHERE { 
+                ?emd a :EMD.
+            }
+
+b)
+SELECT (COUNT(?emd) AS ?total) WHERE { 
+                ?emd a :EMD.
+                ?emd :resultado "True".
+}
+
+c)
+SELECT ?genero (COUNT(?emd) AS ?total) WHERE { 
+                ?atleta :realizou ?emd .
+                ?atleta :genero ?genero .
+            } GROUP BY ?genero
+
+d)
+SELECT ?modalidade (COUNT(?emd) AS ?total) WHERE { 
+                ?atleta :realizou ?emd .
+                ?atleta :praticaModalidade ?modalidade .
+            } GROUP BY ?modalidade
+
+e)
+SELECT (COUNT(?emd) AS ?total) WHERE { 
+                ?atleta :realizou ?emd .
+    			?atleta :pertence :GDGoma.
+                ?atleta :federado "True".
+            }
+
+f)
+SELECT (COUNT(?emd) AS ?total) WHERE { 
+                ?atleta :realizou ?emd .
+    			?atleta :praticaModalidade :Triatlo.
+    			?atleta :genero "F".
+            }
+
